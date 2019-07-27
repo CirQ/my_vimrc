@@ -259,3 +259,13 @@ cnoremap <C-e> <End>
 inoremap { {}<Esc>i
 inoremap [ []<Esc>i
 inoremap ( ()<Esc>i
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap } <c-r>=ClosePair('}')<CR>
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endfunction
